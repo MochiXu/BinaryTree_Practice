@@ -3,16 +3,14 @@ package BinaryTree;
 
 public class _101_isSymmetric {
     public boolean isSymmetric(TreeNode root) {
-        
+        return checklr(root,root);
     }
-    public void revert(TreeNode root){
-        //二叉树镜像翻转
-        if(root==null)
-            return;
-        TreeNode temp=root.left;
-        root.left=root.right;
-        root.right=temp;
-        revert(root.left);
-        revert(root.right);
+    //不要陷入具体的递归细节，把握递归出口以及递归函数
+    public boolean checklr(TreeNode left,TreeNode right){
+        //递归出口
+        if(left==null||right==null)
+            return left==null&&right==null?true:false;
+        //递归出口+递归函数
+        return left.val==right.val&&checklr(left.right,right.left)&&checklr(left.left,right.right);
     }
 }
